@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Slider\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,5 @@ Route::get('/myproducts', function () {
 Route::get('/detail-product', function () {
     return view('Member.Portal.Detail-Product');
 })->name('detail-product');
+
+Route::resource('admin/sliders', SliderController::class);
