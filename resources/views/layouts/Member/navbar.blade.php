@@ -38,34 +38,46 @@
     <!-- Navbar & Hero Start -->
     <div class="container-fluid nav-bar p-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-            <a href="" class="navbar-brand p-0">
-                <h3 class="display-9 text-secondary m-0"><img src="img/brand-logo.png" class="img-fluid"
-                        alt="">Virtual Inter Komunika</h3>
-                <!-- <img src="img/logo.png" alt="Logo"> -->
+            <a href="{{ route('home')}}" class="navbar-brand p-0">
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('assets/img/logo-vik.png') }}" alt="Logo" class="me-3" style="width: 100px; height: auto;">
+                    <h3 class="display-9 text-secondary m-0">Virtual Inter Komunika</h3>
+                </div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                    <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
-                    <a href="{{ route('product') }}" class="nav-item nav-link {{ request()->is('product') ? 'active' : '' }}">Products</a>
+                    <a href="{{ route('home') }}"
+                        class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                    <a href="{{ route('about') }}"
+                        class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
+                    <a href="{{ route('product') }}"
+                        class="nav-item nav-link {{ request()->is('product') ? 'active' : '' }}">Products</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link {{ request()->is('activity') || request()->is('countries') || request()->is('portal') || request()->is('training') ? 'active' : '' }}" data-bs-toggle="dropdown"><span class="dropdown-toggle">Pages</span></a>
+                        <a href="#"
+                            class="nav-link {{ request()->is('activity') || request()->is('countries') || request()->is('portal') || request()->is('training') ? 'active' : '' }}"
+                            data-bs-toggle="dropdown"><span class="dropdown-toggle">Pages</span></a>
                         <div class="dropdown-menu m-0">
-                            <a href="{{ route('activity')}}" class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">Company Activities</a>
-                            <a href="countries.html" class="dropdown-item {{ request()->is('countries') ? 'active' : '' }}">Meta</a>
-                            <a href="{{ route('portal')}}" class="dropdown-item {{ request()->is('portal') ? 'active' : '' }}">Portal Member</a>
-                            <a href="training.html" class="dropdown-item {{ request()->is('training') ? 'active' : '' }}">Training</a>
+                            <a href="{{ route('activity') }}"
+                                class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">Company
+                                Activities</a>
+                            <a href="countries.html"
+                                class="dropdown-item {{ request()->is('countries') ? 'active' : '' }}">Meta</a>
+                            <a href="{{ route('portal') }}"
+                                class="dropdown-item {{ request()->is('portal') ? 'active' : '' }}">Portal Member</a>
+                            <a href="training.html"
+                                class="dropdown-item {{ request()->is('training') ? 'active' : '' }}">Training</a>
                         </div>
                     </div>
-                    <a href="{{ route('contact')}}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+                    <a href="{{ route('contact') }}"
+                        class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                 </div>
 
                 <button class="btn btn-primary btn-md-square border-secondary mb-3 mb-md-3 mb-lg-0 me-3"
                     data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
-                <a href=""
+                <a href="{{ route('login') }}"
                     class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">Login</a>
             </div>
         </nav>
@@ -82,7 +94,8 @@
                 </div>
                 <div class="modal-body d-flex align-items-center">
                     <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control p-3" placeholder="Type keywords here" aria-describedby="search-icon-1">
+                        <input type="search" class="form-control p-3" placeholder="Type keywords here"
+                            aria-describedby="search-icon-1">
                         <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                     </div>
                 </div>

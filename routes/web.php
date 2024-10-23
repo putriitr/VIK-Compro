@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Slider\SliderController;
 |
 */
 
+// Member
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -46,4 +47,21 @@ Route::get('/detail-product', function () {
     return view('Member.Portal.Detail-Product');
 })->name('detail-product');
 
+// Auth
+
+//Admin Page
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/login-admin', function () {
+    return view('dashboard');
+})->name('login-admin');
+
+Route::get('/sliders-admin', function () {
+    return view('Admin.Sliders.index');
+})->name('sliders-admin');
+
+
+// Admin
 Route::resource('admin/sliders', SliderController::class);
