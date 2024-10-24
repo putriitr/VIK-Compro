@@ -27,6 +27,10 @@ Route::get('/product', function () {
     return view('Member.Product.Product');
 })->name('product');
 
+Route::get('/detail-product', function () {
+    return view('Member.Product.Detail-Product');
+})->name('detail-product');
+
 Route::get('/activity', function () {
     return view('Member.Activity.Activity');
 })->name('activity');
@@ -35,6 +39,8 @@ Route::get('/contact', function () {
     return view('Member.Contact.Contact');
 })->name('contact');
 
+
+// Portal
 Route::get('/portal', function () {
     return view('Member.Portal.Portal');
 })->name('portal');
@@ -43,9 +49,9 @@ Route::get('/myproducts', function () {
     return view('Member.Portal.MyProducts');
 })->name('myproducts');
 
-Route::get('/detail-product', function () {
-    return view('Member.Portal.Detail-Product');
-})->name('detail-product');
+Route::get('/product-member', function () {
+    return view('Member.Portal.ProductMember');
+})->name('product-member');
 
 // Auth
 

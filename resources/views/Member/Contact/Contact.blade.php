@@ -22,8 +22,8 @@
                         <h5 class="sub-title text-primary pe-3">Quick Contact</h5>
                     </div>
                     <h1 class="display-5 mb-4">Have Questions? Don't Hesitate to Contact Us</h1>
-                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat totam deserunt
-                        tempora. Tempore neque necessitatibus corporis error earum sint quae?</p>
+                    <p class="mb-5">For inquiries or further information regarding our products and services, please do
+                        not hesitate to contact us. We are here to assist you.</p>
                     <div class="d-flex border-bottom mb-4 pb-4">
                         <i class="fas fa-map-marked-alt fa-4x text-primary bg-light p-3 rounded"></i>
                         <div class="ps-3">
@@ -86,9 +86,8 @@
                         <h5 class="sub-title text-primary pe-3">Let’s Connect</h5>
                     </div>
                     <h1 class="display-5 mb-4">Send Your Message</h1>
-                    <p class="mb-3">The contact form is currently inactive. Get a functional and working contact form with
-                        Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a
-                            class="text-primary fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                    <p class="mb-3">If you have any questions or need assistance, please feel free to reach out using the
+                        form below. <strong>We're here to help you!</strong></p>
                     <form>
                         <div class="row g-4">
                             <div class="col-lg-12 col-xl-6">
