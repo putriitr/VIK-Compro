@@ -20,20 +20,6 @@
         <div class="container py-5">
             <div class="office pt-5">
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="office-item p-4">
-                            <div class="office-img mb-4">
-                                <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="">
-                            </div>
-                            <div class="office-content d-flex flex-column" style="align-items: left;">
-                                <h4 class="mb-2">Product Name</h4>
-                                <p class="mb-0">Purchase Date : 21-10-2024</p><br>
-                                <a href="{{ route('detail-product')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
-                                    View Details <i class="fas fa-hand-point-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="office-item p-4">
                             <div class="office-img mb-4">
@@ -42,35 +28,7 @@
                             <div class="office-content d-flex flex-column">
                                 <h4 class="mb-2">Product Name</h4>
                                 <p class="mb-0">Purchase Date : 21-10-2024</p><br>
-                                <a href="{{ route('myproducts')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
-                                    View Details <i class="fas fa-hand-point-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="office-item p-4">
-                            <div class="office-img mb-4">
-                                <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="">
-                            </div>
-                            <div class="office-content d-flex flex-column">
-                                <h4 class="mb-2">Product Name</h4>
-                                <p class="mb-0">Purchase Date : 21-10-2024</p><br>
-                                <a href="{{ route('myproducts')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
-                                    View Details <i class="fas fa-hand-point-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="office-item p-4">
-                            <div class="office-img mb-4">
-                                <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="">
-                            </div>
-                            <div class="office-content d-flex flex-column">
-                                <h4 class="mb-2">Product Name</h4>
-                                <p class="mb-0">Purchase Date : 21-10-2024</p><br>
-                                <a href="{{ route('myproducts')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
+                                <a href="{{ route('product-member')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
                                     View Details <i class="fas fa-hand-point-right"></i>
                                 </a>
                             </div>

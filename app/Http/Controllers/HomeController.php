@@ -2,27 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider; // Import model Slider
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        // Mengambil semua slider dari database
+        $sliders = Slider::all(); // Atau Anda bisa menggunakan paginasi jika diperlukan
+
+        return view('home', compact('sliders')); // Kirim data slider ke tampilan
     }
 }

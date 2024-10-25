@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin\Slider;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::all();
-        return view('admin.sliders.index', compact('sliders'));
+        $sliders = Slider::all(); // Ambil semua data slider
+        return view('admin.sliders.index', compact('sliders')); // Kirim data ke view
     }
 
     public function create()
@@ -23,21 +22,23 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'heading' => 'required|string|max:255',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'subjudul' => 'required|string|max:255',
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('assets/img'), $imageName);
+        // Jika validasi berhasil, eksekusi kode berikut
+        $imageName = time() . '.' . $request->gambar->extension();
+        $request->gambar->move(public_path('assets/img/slider'), $imageName); // Perbarui path gambar
 
         Slider::create([
-            'subheading' => $request->subheading,
-            'heading' => $request->heading,
-            'description' => $request->description,
+            'subjudul' => $request->subjudul,
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
             'button_text' => $request->button_text,
             'button_url' => $request->button_url,
-            'image' => 'assets/img/' . $imageName,
+            'gambar' => 'assets/img/slider/' . $imageName, // Perbarui path gambar
         ]);
 
         return redirect()->route('sliders.index')->with('success', 'Slider created successfully.');
@@ -51,24 +52,25 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         $request->validate([
-            'heading' => 'required|string|max:255',
-            'description' => 'required',
+            'subjudul' => 'required|string|max:255', // Validasi subjudul
+            'judul' => 'required|string|max:255', // Validasi judul
+            'deskripsi' => 'required', // Validasi deskripsi
         ]);
 
-        $imageName = $slider->image;
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/img'), $imageName);
-            $imageName = 'assets/img/' . $imageName;
+        $imageName = $slider->gambar; // Ambil nama gambar lama
+        if ($request->hasFile('gambar')) {
+            $imageName = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('assets/img/slider'), $imageName); // Perbarui path gambar
+            $imageName = 'assets/img/slider/' . $imageName; // Perbarui path gambar
         }
 
         $slider->update([
-            'subheading' => $request->subheading,
-            'heading' => $request->heading,
-            'description' => $request->description,
+            'subjudul' => $request->subjudul,
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
             'button_text' => $request->button_text,
             'button_url' => $request->button_url,
-            'image' => $imageName,
+            'gambar' => $imageName, // Perbarui path gambar
         ]);
 
         return redirect()->route('sliders.index')->with('success', 'Slider updated successfully.');
@@ -76,11 +78,16 @@ class SliderController extends Controller
 
     public function destroy(Slider $slider)
     {
-        if (file_exists(public_path($slider->image))) {
-            unlink(public_path($slider->image));
+        if (file_exists(public_path($slider->gambar))) {
+            unlink(public_path($slider->gambar)); // Hapus gambar jika ada
         }
         $slider->delete();
 
         return redirect()->route('sliders.index')->with('success', 'Slider deleted successfully.');
+    }
+
+    public function show(Slider $slider)
+    {
+        return view('admin.sliders.show', compact('slider'));
     }
 }

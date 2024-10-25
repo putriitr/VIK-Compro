@@ -88,46 +88,53 @@
                     <h1 class="display-5 mb-4">Send Your Message</h1>
                     <p class="mb-3">If you have any questions or need assistance, please feel free to reach out using the
                         form below. <strong>We're here to help you!</strong></p>
-                    <form>
+                    <form action="" method="POST">
+                        @csrf
                         <div class="row g-4">
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name"
+                                        placeholder="Your First Name" required>
+                                    <label for="first_name">First Name</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="text" name="last_name" class="form-control" id="last_name"
+                                        placeholder="Your Last Name" required>
+                                    <label for="last_name">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="form-floating">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="Your Email" required>
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
-                                    <input type="phone" class="form-control" id="phone" placeholder="Phone">
+                                    <input type="text" name="phone" class="form-control" id="phone"
+                                        placeholder="Your Phone" required>
                                     <label for="phone">Your Phone</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-xl-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="project" placeholder="Project">
-                                    <label for="project">Your Project</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" name="subject" class="form-control" id="subject"
+                                        placeholder="Subject" required>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 160px"></textarea>
+                                    <textarea name="message" class="form-control" placeholder="Leave a message here" id="message"
+                                        style="height: 160px" required></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                <button type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
                             </div>
                         </div>
                     </form>

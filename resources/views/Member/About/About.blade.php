@@ -140,8 +140,6 @@
                         <h5 class="mb-3">Cost-Effective</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
-                        <a class="btn btn-secondary rounded-pill" href="#">Read More<i
-                                class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -154,8 +152,6 @@
                         <h5 class="mb-3">Visa Assistance</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
-                        <a class="btn btn-secondary rounded-pill" href="#">Read More<i
-                                class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -168,8 +164,6 @@
                         <h5 class="mb-3">Faster Processing</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
-                        <a class="btn btn-secondary rounded-pill" href="#">Read More<i
-                                class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -182,8 +176,6 @@
                         <h5 class="mb-3">Direct Interviews</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
-                        <a class="btn btn-secondary rounded-pill" href="#">Read More<i
-                                class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
