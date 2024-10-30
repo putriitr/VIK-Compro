@@ -25,7 +25,7 @@
                             <div class="service-item">
                                 <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
                                     <div class="service-img">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid w-100 rounded"
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
                                             alt="Image" style="transition: transform 0.3s ease-in-out;">
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="service-item">
                                 <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
                                     <div class="service-img">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid w-100 rounded"
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
                                             alt="Image" style="transition: transform 0.3s ease-in-out;">
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="service-item">
                                 <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
                                     <div class="service-img">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid w-100 rounded"
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
                                             alt="Image" style="transition: transform 0.3s ease-in-out;">
                                     </div>
                                 </div>

@@ -12,17 +12,23 @@
                             <div class="service-item">
                                 <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
                                     <div class="service-img">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid w-100 rounded" alt="Image">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
+                                            alt="Image">
                                     </div>
                                     <!-- Gambar kecil di bawah gambar utama -->
                                     <div style="display: flex; margin-top: 15px;">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 1">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 2">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%;" alt="Small Image 3">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid"
+                                            style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 1">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid"
+                                            style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 2">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid"
+                                            style="border-radius: 8px; width: 20%;" alt="Small Image 3">
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('product')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0" style="margin-top: 20px;"><i class="fas fa-arrow-left"></i> Back to Product Page</a>
+                            <a href="{{ route('product') }}"
+                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0"
+                                style="margin-top: 20px;"><i class="fas fa-arrow-left"></i> Back to Product Page</a>
                         </div>
 
                         <div class="col-lg-5">
@@ -36,7 +42,8 @@
                                     <p style="font-size: 14px; color: #666; margin-top: 10px;"><strong>Deskripsi :</strong>
                                     </p>
                                     <p style="font-size: 14px; color: #666; margin-bottom: 15px; text-align: justify;">
-                                        Ini adalah deskripsi singkat produk yang memberikan gambaran mengenai fitur dan manfaat dari produk tersebut.
+                                        Ini adalah deskripsi singkat produk yang memberikan gambaran mengenai fitur dan
+                                        manfaat dari produk tersebut.
                                     </p>
                                     <!-- Merek -->
                                     <div style="display: flex; font-size: 14px; color: #666; margin-bottom: 5px;">
@@ -101,20 +108,25 @@
                             Produk</span>
                         <div style="">
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
-                                <i class="fa fa-bars" style="color: grey; margin-right: 10px; cursor: pointer;"></i>
-                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Konstruksi</span>
+                                <i class="fa fa-vial" style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Labware</span>
                             </div>
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
-                                <i class="fa fa-bars" style="color: grey; margin-right: 10px; cursor: pointer;"></i>
-                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Konstruksi</span>
+                                <i class="fa fa-flask" style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Bahan Kimia</span>
                             </div>
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
-                                <i class="fa fa-bars" style="color: grey; margin-right: 10px; cursor: pointer;"></i>
-                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Konstruksi</span>
+                                <i class="fa fa-tint" style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Pipet Laboratorium</span>
                             </div>
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
-                                <i class="fa fa-bars" style="color: grey; margin-right: 10px; cursor: pointer;"></i>
-                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Konstruksi</span>
+                                <i class="fa fa-balance-scale"
+                                    style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Ukur</span>
+                            </div>
+                            <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
+                                <i class="fa fa-tools" style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <span style="flex: 1; font-size: 16px; font-weight: 500;">Peralatan Umum</span>
                             </div>
                         </div>
                     </div>

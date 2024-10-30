@@ -26,13 +26,13 @@
                             <div class="service-item">
                                 <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
                                     <div class="service-img">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid w-100 rounded" alt="Image">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded" alt="Image">
                                     </div>
                                     <!-- Gambar kecil di bawah gambar utama -->
                                     <div style="display: flex; margin-top: 15px;">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 1">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 2">
-                                        <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%;" alt="Small Image 3">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 1">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%; margin-right: 5px;" alt="Small Image 2">
+                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid" style="border-radius: 8px; width: 20%;" alt="Small Image 3">
                                     </div>
                                 </div>
                             </div>

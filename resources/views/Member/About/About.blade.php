@@ -19,8 +19,8 @@
         <div class="row g-5">
             <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
                 <div class="bg-light rounded">
-                    <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100" style="margin-bottom: -2px;" alt="Image">
-                    <img src="{{ asset('storage/company_2.jpg')}}" class="img-fluid w-100 border-bottom border-5 border-primary" style="border-top-right-radius: 300px; border-top-left-radius: 300px;" alt="Image">
+                    <img src="{{ asset('assets/img/company_1.jpg')}}" class="img-fluid w-100" style="margin-bottom: -2px;" alt="Image">
+                    <img src="{{ asset('assets/img/company_2.jpg')}}" class="img-fluid w-100 border-bottom border-5 border-primary" style="border-top-right-radius: 300px; border-top-left-radius: 300px;" alt="Image">
                 </div>
             </div>
             <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
@@ -88,7 +88,7 @@
             <div class="col-lg-6 col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="training-item">
                     <div class="training-inner">
-                        <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="Image">
+                        <img src="{{ asset('assets/img/pict.jpg')}}" class="img-fluid w-100 rounded" alt="Image">
                         <div class="training-title-name">
                             <a href="#" class="h1 text-white mb-0">VISION</a>
                         </div>
@@ -102,7 +102,7 @@
             <div class="col-lg-6 col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="training-item">
                     <div class="training-inner">
-                        <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="Image">
+                        <img src="{{ asset('assets/img/pict.jpg')}}" class="img-fluid w-100 rounded" alt="Image">
                         <div class="training-title-name">
                             <a href="#" class="h1 text-white mb-0">MISSION</a>
                         </div>
@@ -134,10 +134,10 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="feature-item text-center p-4">
                     <div class="feature-icon p-3 mb-4">
-                        <i class="fas fa-dollar-sign fa-4x text-primary"></i>
+                        <i class="fas fa-headset fa-4x text-primary"></i>
                     </div>
                     <div class="feature-content d-flex flex-column">
-                        <h5 class="mb-3">Cost-Effective</h5>
+                        <h5 class="mb-3">Service 1</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
                     </div>
@@ -146,10 +146,10 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="feature-item text-center p-4">
                     <div class="feature-icon p-3 mb-4">
-                        <i class="fab fa-cc-visa fa-4x text-primary"></i>
+                        <i class="fas fa-box fa-4x text-primary"></i>
                     </div>
                     <div class="feature-content d-flex flex-column">
-                        <h5 class="mb-3">Visa Assistance</h5>
+                        <h5 class="mb-3">Service 2</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
                     </div>
@@ -158,10 +158,10 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="feature-item text-center p-4">
                     <div class="feature-icon p-3 mb-4">
-                        <i class="fas fa-atlas fa-4x text-primary"></i>
+                        <i class="fas fa-tools fa-4x text-primary"></i>
                     </div>
                     <div class="feature-content d-flex flex-column">
-                        <h5 class="mb-3">Faster Processing</h5>
+                        <h5 class="mb-3">Service 3</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
                     </div>
@@ -170,10 +170,10 @@
             <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="feature-item text-center p-4">
                     <div class="feature-icon p-3 mb-4">
-                        <i class="fas fa-users fa-4x text-primary"></i>
+                        <i class="fas fa-file-alt fa-4x text-primary"></i>
                     </div>
                     <div class="feature-content d-flex flex-column">
-                        <h5 class="mb-3">Direct Interviews</h5>
+                        <h5 class="mb-3">Service 4</h5>
                         <p class="mb-3">Dolor, sit amet consectetur adipisicing elit. Soluta inventore cum
                             accusamus,</p>
                     </div>

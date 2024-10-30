@@ -32,15 +32,15 @@
                 </div>
             </div>
 
-            <div class="row g-4 text-center mb-4" style="margin-top: 50px; margin-bottom: 50px;">
-                @for ($i = 0; $i < 4; $i++)
+            <div class="row g-4 text-center mb-4 justify-content-center align-items-center" style="margin-top: 50px; margin-bottom: 50px;">
+                @for ($i = 0; $i < 2; $i++)
                     <div class="col-lg-6 col-xl-3 mb-5 mb-xl-0 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="country-item">
                             <div class="rounded overflow-hidden">
-                                <img src="{{ asset('storage/company_2.jpg') }}" class="img-fluid w-100 rounded" alt="Image">
+                                <img src="{{ asset('assets/img/slider/1729836616.jpg') }}" class="img-fluid w-100 rounded" alt="Image">
                             </div>
                             <div class="country-flag">
-                                <img src="{{ asset('storage/company_1.jpg') }}" class="img-fluid rounded-circle" alt="Image">
+                                <img src="{{ asset('assets/img/slider/1729836616.jpg') }}" class="img-fluid rounded-circle" alt="Image">
                             </div>
                             <div class="country-name">
                                 <a href="#" class="text-white fs-4">Brazil</a>

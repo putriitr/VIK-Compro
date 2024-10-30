@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Company Parameter Details</h1>
+        <h1>Detail Parameter Perusahaan</h1>
         <div class="mb-3">
-            <strong>Nama Perusahaan:</strong> {{ $companyParameter->nama_perusahaan }}
+            <strong>Nama Perusahaan :</strong> {{ $companyParameter->nama_perusahaan }}
         </div>
         <div class="mb-3">
             <strong>Email:</strong> {{ $companyParameter->email }}

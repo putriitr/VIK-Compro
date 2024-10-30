@@ -19,7 +19,7 @@
                     </a>
                     <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="#">
                         <i class="fab fa-facebook-f fw-normal text-secondary"></i>
-                    </a>s
+                    </a>
                     <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="#">
                         <i class="fab fa-linkedin-in fw-normal text-secondary"></i>
                     </a>
@@ -33,9 +33,8 @@
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a href="#" class="text-muted me-2">Help</a><small> / </small>
-                    <a href="#" class="text-muted mx-2">Support</a><small> / </small>
-                    <a href="#" class="text-muted ms-2">Contact</a>
+                    <a href="#footer" class="text-muted mx-2">Quick Access</a><small> / </small>
+                    <a href="{{ route('contact')}}" class="text-muted ms-2">Contact</a>
                 </div>
             </div>
         </div>
@@ -67,19 +66,50 @@
                         <div class="dropdown-menu m-0">
                             <a href="{{ route('activity') }}" class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">Company Activities</a>
                             <a href="countries.html" class="dropdown-item {{ request()->is('countries') ? 'active' : '' }}">Meta</a>
-                            <a href="training.html" class="dropdown-item {{ request()->is('training') ? 'active' : '' }}">Training</a>
                         </div>
                     </div>
 
-                    <!-- Portal Member -->
-                    <a href="{{ route('portal') }}" class="nav-item nav-link {{ request()->is('portal') ? 'active' : '' }}">Portal Member</a>
+                    <!-- Portal -->
+                    @auth
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ route('portal') }}" class="nav-item nav-link {{ request()->is('portal') ? 'active' : '' }}">Portal Member</a>
+                                <a href="{{ route('portal') }}" class="nav-item nav-link {{ request()->is('portal') ? 'active' : '' }}">Portal Distributor</a>
+                            </div>
+                        </div>
+                    @endauth
 
                     <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                 </div>
 
-                <button class="btn btn-primary btn-md-square border-secondary mb-3 mb-md-3 mb-lg-0 me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
-                    <i class="fas fa-search"></i>
-                </button>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        @if (LaravelLocalization::getCurrentLocale() == 'id')
+                            <img src="{{ asset('assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                style="width: 25px; height: auto; margin-right: 5px;">
+                        @elseif(LaravelLocalization::getCurrentLocale() == 'en')
+                            <img src="{{ asset('assets/img/flags/us.png') }}" alt="English"
+                                style="width: 25px; height: auto; margin-right: 5px;">
+                        @else
+                            {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        @endif
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end m-0">
+                        <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
+                            <img src="{{ asset('assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                style="width: 20px; height: auto; margin-right: 5px;">
+                            {{ __('messages.bahasa') }}
+                        </a>
+                        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
+                            <img src="{{ asset('assets/img/flags/us.png') }}" alt="English"
+                                style="width: 20px; height: auto; margin-right: 5px;">
+                            {{ __('messages.english') }}
+                        </a>
+                    </div>
+                </div>
+
                 <a href="{{ route('login') }}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">Login</a>
             </div>
         </nav>

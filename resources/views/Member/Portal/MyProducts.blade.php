@@ -23,7 +23,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="office-item p-4">
                             <div class="office-img mb-4">
-                                <img src="{{ asset('storage/company_1.jpg')}}" class="img-fluid w-100 rounded" alt="">
+                                <img src="{{ asset('assets/img/product-1.jpg')}}" class="img-fluid w-100 rounded" alt="">
                             </div>
                             <div class="office-content d-flex flex-column">
                                 <h4 class="mb-2">Product Name</h4>

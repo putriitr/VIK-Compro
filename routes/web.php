@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 // use App\Http\Controllers\Admin\GuestMessage\GuestMessageController;
-use App\Http\Controllers\CompanyParameterController;
+use App\Http\Controllers\Admin\Company\CompanyParameterController;
 
 /*
 |----------------------------------------------------------------------
@@ -68,6 +68,6 @@ Route::get('/dashboard', function () {
 Route::prefix('admin')->group(function () {
     Route::resource('sliders', SliderController::class);
     // Route::post('/guest/message', [GuestMessageController::class, 'store'])->name('guest.store');
-    Route::resource('company', CompanyParameterController::class);
+    Route::resource('companies', CompanyParameterController::class);
 });
 
