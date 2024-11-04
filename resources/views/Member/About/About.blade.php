@@ -4,10 +4,10 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h1>
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h1>
         <ol class="breadcrumb justify-content-center text-white mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-            <li class="breadcrumb-item active text-secondary">About</li>
+            <li class="breadcrumb-item"><a href="{{ route('home')}}" class="text-white">{{ __('messages.home') }}</a></li>
+            <li class="breadcrumb-item active text-secondary">{{ __('messages.about_us') }}</li>
         </ol>
     </div>
 </div>
@@ -24,9 +24,9 @@
                 </div>
             </div>
             <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
-                <h5 class="sub-title pe-3">About the company</h5>
-                <h1 class="display-5 mb-4">PT Virtual Inter Komunika</h1>
-                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt architecto consectetur iusto perferendis blanditiis assumenda dignissimos, commodi fuga culpa earum explicabo libero sint est mollitia saepe! Sequi asperiores rerum nemo!</p>
+                <h5 class="sub-title pe-3">{{ __('messages.about_us') }}</h5>
+                <h1 class="display-5 mb-4">{{ $company->nama_perusahaan ?? '' }}</h1>
+                <p class="mb-4">{{ $company->sejarah_singkat ?? ' ' }}</p>
                 <div class="row gy-4 align-items-center">
                     <div class="col-12 col-sm-6 d-flex align-items-center">
                         <i class="fas fa-map-marked-alt fa-3x text-secondary"></i>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="d-flex flex-column justify-content-center">
                                 <span class="text-primary">Have any questions?</span>
-                                <span class="text-secondary fw-bold fs-5" style="letter-spacing: 2px;">(021) 23951673</span>
+                                <span class="text-secondary fw-bold fs-5" style="letter-spacing: 2px;">{{ $company->no_telepon ?? '' }}</span>
                             </div>
                         </div>
                     </div>
@@ -79,10 +79,10 @@
     <div class="container py-5">
         <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="sub-style">
-                <h5 class="sub-title text-primary px-3">COMPANY PURPOSE</h5>
+                <h5 class="sub-title text-primary px-3">{{ __('messages.tujuan_kami') }}</h5>
             </div>
-            <h1 class="display-5 mb-4">Our Vision and Mission</h1>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam necessitatibus saepe in ab? Repellat!</p>
+            <h1 class="display-5 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
+            <p class="mb-0">{{ __('messages.visi_misi_perusahaan11') }}</p>
         </div>
         <div class="row g-4">
             <div class="col-lg-6 col-lg-6 col-xl-6 wow fadeInUp" data-wow-delay="0.1s">

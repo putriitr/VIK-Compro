@@ -1,6 +1,28 @@
 @extends('layouts.Member.master')
 
 @section('content')
+    <!-- Menampilkan pesan error -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Menampilkan pesan sukses -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
+            <p>{{ session('success') }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Carousel Start -->
     <div class="carousel-header">
         <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
@@ -8,8 +30,7 @@
                 <!-- Tampilkan Gambar Default Jika Tidak Ada Slider -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('assets/img/bg-login.jpg') }}" alt="No Sliders Available"
-                            class="d-block w-100">
+                        <img src="{{ asset('assets/img/bg-login.jpg') }}" alt="No Sliders Available" class="d-block w-100">
                         <div class="carousel-caption">
                             <div class="text-center p-4" style="max-width: 900px;">
                                 <h4 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp"
@@ -84,7 +105,6 @@
     </div>
     <!-- Modal Search End -->
 
-
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -99,14 +119,11 @@
                     </div>
                 </div>
                 <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
-                    <h5 class="sub-title pe-3">About the company</h5>
-                    <h1 class="display-5 mb-4">PT Virtual Inter Komunika</h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt architecto
-                        consectetur iusto perferendis blanditiis assumenda dignissimos, commodi fuga culpa earum
-                        explicabo libero sint est mollitia saepe! Sequi asperiores rerum nemo!</p>
-                    <a href=""
-                        class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">More
-                        Details</a>
+                    <h5 class="sub-title pe-3">{{ __('messages.about_us') }}</h5>
+                    <h1 class="display-5 mb-4">{{ $company->nama_perusahaan ?? 'PT Virtual Inter Komunika' }}</h1>
+                    <p class="mb-4">{{ $company->sejarah_singkat ?? ' ' }}</p>
+                    <a href="{{ route('about') }}"
+                        class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">{{ __('messages.show_more') }}</a>
                 </div>
             </div>
         </div>
@@ -118,12 +135,10 @@
         <div class="container py-5">
             <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="sub-style">
-                    <h5 class="sub-title text-primary px-3">Our Products</h5>
+                    <h5 class="sub-title text-primary px-3">{{ __('messages.find_products') }}</h5>
                 </div>
-                <h1 class="display-5 mb-4">Company Products</h1>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deleniti amet at
-                    atque sequi quibusdam cumque itaque repudiandae temporibus, eius nam mollitia voluptas maxime veniam
-                    necessitatibus saepe in ab? Repellat!</p>
+                <h1 class="display-5 mb-4">{{ __('messages.our_products') }}</h1>
+                <p class="mb-0">{{ __('messages.product_desc1') }}</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
@@ -214,11 +229,139 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4"
-                        href="#">Explore More</a>
+                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="{{ route('product.index')}}">{{ __('messages.show_more') }}</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Services End -->
+
+    <!-- Brand Start -->
+    <div id="brand" class="container-fluid feature pb-5">
+        <div class="container pb-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+                <h4 class="text-primary">{{ __('messages.our_brands1') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
+                <p class="mb-0">{{ __('messages.brands_desc1') }}</p>
+            </div>
+            @if ($partners->isEmpty())
+                <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
+                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                            <div>
+                                <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
+                                    {{ __('messages.brand_not_available') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="carousel-container">
+                    <div class="carousel-rows">
+                        @foreach ($partners as $partner)
+                            <div class="brand-item">
+                                <img src="{{ asset($partner->gambar) }}" class="img-fluid" alt="{{ $partner->nama }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+    <!-- Brand End -->
+
+    <style>
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            /* Adjust height for two rows */
+        }
+
+        .carousel-rows {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            /* 4 images per row */
+            grid-auto-rows: 120px;
+            /* Fixed height for each row */
+            animation: marquee 50s linear infinite;
+            position: relative;
+        }
+
+        .brand-item {
+            margin: 10px;
+            border: 2px solid #ddd;
+            /* Border around each image */
+            border-radius: 5px;
+            /* Rounded corners for the border */
+            display: flex;
+            justify-content: center;
+            /* Center the image inside the item */
+            align-items: center;
+            /* Center the image vertically */
+            overflow: hidden;
+            /* Hide overflow if image is too big */
+        }
+
+        img {
+            width: 100%;
+            /* Make image fill the container */
+            height: 100%;
+            /* Maintain height for uniformity */
+            object-fit: cover;
+            /* Cover the area of the item */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const carouselRows = document.getElementById("carouselRows");
+            const container = document.querySelector('.carousel-container');
+
+            // Clone the carousel rows to create a seamless loop
+            const clonedRows = carouselRows.cloneNode(true);
+            carouselRows.appendChild(clonedRows);
+
+            // Calculate total height after cloning
+            const totalHeight = carouselRows.scrollHeight; // Get the total height of the images
+            const containerHeight = container.clientHeight;
+
+            // Set animation duration based on the total height
+            // The factor of 120 can be adjusted based on the speed you desire
+            const duration = (totalHeight / 120) * 30; // Adjust based on desired speed
+
+            // Ensure the animation runs smoothly
+            carouselRows.style.animation = `marquee ${duration}s linear infinite`;
+
+            // Initial position for the cloned content
+            carouselRows.style.transform = `translateY(0)`;
+
+            // Function to reset scroll position when reaching the end of the first set
+            const resetScrollPosition = () => {
+                const scrollTop = container.scrollTop;
+
+                // Reset position when the original rows are scrolled out of view
+                if (scrollTop >= totalHeight / 2) {
+                    // Reset the scroll position back to the start
+                    carouselRows.style.transform = `translateY(0)`;
+                    container.scrollTop = 0; // Reset scroll position
+                }
+            };
+
+            // Listen for scroll events to reset position
+            container.addEventListener('scroll', resetScrollPosition);
+        });
+    </script>
 @endsection

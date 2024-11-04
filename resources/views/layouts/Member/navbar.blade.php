@@ -58,13 +58,13 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                     <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
-                    <a href="{{ route('product') }}" class="nav-item nav-link {{ request()->is('product') ? 'active' : '' }}">Products</a>
+                    <a href="{{ route('product.index') }}" class="nav-item nav-link {{ request()->is('product') ? 'active' : '' }}">Products</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link {{ request()->is('activity') || request()->is('countries') || request()->is('training') ? 'active' : '' }}" data-bs-toggle="dropdown">
                             <span class="dropdown-toggle">Pages</span>
                         </a>
                         <div class="dropdown-menu m-0">
-                            <a href="{{ route('activity') }}" class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">Company Activities</a>
+                            <a href="{{ route('member.activity') }}" class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">Company Activities</a>
                             <a href="countries.html" class="dropdown-item {{ request()->is('countries') ? 'active' : '' }}">Meta</a>
                         </div>
                     </div>

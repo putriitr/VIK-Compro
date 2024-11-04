@@ -1,7 +1,5 @@
 <?php
 
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 return [
 
     // Uncomment the languages that your site supports - or add new ones.

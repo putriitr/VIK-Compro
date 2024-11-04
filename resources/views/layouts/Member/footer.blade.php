@@ -1,3 +1,8 @@
+@php
+$compro = \App\Models\CompanyParameter::first();
+$brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
+@endphp
+
 <!-- Footer Start -->
 <div id="footer" class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
     <div class="container py-5">
@@ -5,7 +10,11 @@
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="text-secondary mb-4">Contact Info</h4>
-                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> Jl. Pal Putih No.193A, Kramat, Senen, Jakarta Pusat 10450</a>
+                    @if(!empty($compro->alamat))
+                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
+                    @else
+                        <p><i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}</p>
+                    @endif
                     <a href=""><i class="fas fa-envelope me-2"></i> business@vik.co.id</a>
                     <a href=""><i class="fas fa-phone me-2"></i> (021) 23951673</a><br>
                     <div class="d-flex align-items-center">

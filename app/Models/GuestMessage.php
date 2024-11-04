@@ -9,13 +9,19 @@ class GuestMessage extends Model
 {
     use HasFactory;
 
+    protected $table = 'guest_messages';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'nama',
         'email',
-        'phone',
-        'subject',
-        'message',
+        'perusahaan',
+        'no_wa',
+        'pesan',
+        'ip_address'
     ];
 }
-
