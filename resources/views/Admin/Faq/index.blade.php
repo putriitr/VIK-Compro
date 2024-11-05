@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="h4">Pertanyaan</h2>
+            <h1 class="h3">Pertanyaan</h1>
             <a href="{{ route('admin.faq.create') }}" class="btn btn-primary">Tambah Pertanyaan Baru</a>
         </div>
 

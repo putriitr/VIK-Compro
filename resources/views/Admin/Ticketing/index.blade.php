@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h4>Daftar Ticketing</h4>
+        <h1 class="h3">Daftar Ticketing</h1>
 
         <table class="table">
             <thead>

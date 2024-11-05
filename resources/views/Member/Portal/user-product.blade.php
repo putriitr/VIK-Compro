@@ -20,22 +20,35 @@
         <div class="container py-5">
             <div class="office pt-5">
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="office-item p-4">
-                            <div class="office-img mb-4">
-                                <img src="{{ asset('assets/img/product-1.jpg')}}" class="img-fluid w-100 rounded" alt="">
-                            </div>
-                            <div class="office-content d-flex flex-column">
-                                <h4 class="mb-2">Product Name</h4>
-                                <p class="mb-0">Purchase Date : 21-10-2024</p><br>
-                                <a href="{{ route('product-member')}}" class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
-                                    View Details <i class="fas fa-hand-point-right"></i>
-                                </a>
+                    @forelse($produks as $produk)
+                        <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="office-item p-4">
+                                <div class="office-img mb-4">
+                                    <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
+                                        alt="">
+                                </div>
+                                <div class="office-content d-flex flex-column">
+                                    <h4 class="mb-2">Product Name</h4>
+                                    <p class="mb-0">Purchase Date : 21-10-2024</p><br>
+                                    <a href="{{ route('user-product.show', $produk->produk->id) }}"
+                                        class="btn btn-primary border-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
+                                        View Details <i class="fas fa-hand-point-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @empty
+                        <div class="col-12">
+                            <div class="alert alert-info text-center">
+                                <p class="mb-0">You don't have any products in your catalog.</p>
+                                <p class="mb-0">Member belum memiliki produk yang di-claim oleh admin.</p>
+                            </div>
+                        </div>
+                    @endforelse
                     <div class="col-12 text-center">
-                        <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s" href="{{ route('portal')}}"><i class="fas fa-arrow-left"></i> Back to Portal Member</a>
+                        <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp"
+                            data-wow-delay="0.1s" href="{{ route('portal') }}"><i class="fas fa-arrow-left"></i> Back to
+                            Portal Member</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="card-title"><h1>Produk</h1></div>
+                    <h1 class="h3">Daftar Produk</h1></div>
                     <a href="{{ route('admin.produk.create') }}" class="btn btn-primary mb-3">Tambah Produk Baru</a>
                 </div>
 

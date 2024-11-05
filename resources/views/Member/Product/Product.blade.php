@@ -20,59 +20,32 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="col-lg-4">
-                            <div class="service-item">
-                                <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
-                                    <div class="service-img">
-                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                            alt="Image" style="transition: transform 0.3s ease-in-out;">
+                        <div class="row">
+                            @foreach ($produks as $produk)
+                            <div class="col-lg-4">
+                                <div class="service-item">
+                                    <div class="service-inner position-relative"
+                                        style="overflow: hidden; border-radius: 8px;">
+                                        <div class="service-img">
+                                            <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                                class="img-fluid w-100 rounded" alt="{{ $produk->nama }}"
+                                                style="transition: transform 0.3s ease-in-out;">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="service-title text-center mt-n4">
-                                    <div class="bg-primary text-center rounded p-3"
-                                        style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
-                                        <a href="{{ route('detail-product')}}" class="h5 text-white mb-0" style="text-decoration: none;">Product
-                                            Name</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="service-item">
-                                <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
-                                    <div class="service-img">
-                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                            alt="Image" style="transition: transform 0.3s ease-in-out;">
-                                    </div>
-                                </div>
-                                <div class="service-title text-center mt-n4">
-                                    <div class="bg-primary text-center rounded p-3"
-                                        style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
-                                        <a href="#" class="h5 text-white mb-0" style="text-decoration: none;">Product
-                                            Name</a>
+                                    <div class="service-title text-center mt-n4">
+                                        @php
+                                        $name = $produk->nama;
+                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                    @endphp
+                                        <div class="bg-primary text-center rounded p-3"
+                                            style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
+                                            <a href="{{ route('product.show', $produk->id) }}" class="h5 text-white mb-0"
+                                                style="text-decoration: none;">{{ $limitedName }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="service-item">
-                                <div class="service-inner position-relative" style="overflow: hidden; border-radius: 8px;">
-                                    <div class="service-img">
-                                        <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                            alt="Image" style="transition: transform 0.3s ease-in-out;">
-                                    </div>
-                                </div>
-                                <div class="service-title text-center mt-n4">
-                                    <div class="bg-primary text-center rounded p-3"
-                                        style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
-                                        <a href="#" class="h5 text-white mb-0" style="text-decoration: none;">Product
-                                            Name</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -108,7 +81,8 @@
                                 <span style="flex: 1; font-size: 16px; font-weight: 500;">Pipet Laboratorium</span>
                             </div>
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">
-                                <i class="fa fa-balance-scale" style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
+                                <i class="fa fa-balance-scale"
+                                    style="color: #003A66; margin-right: 10px; cursor: pointer;"></i>
                                 <span style="flex: 1; font-size: 16px; font-weight: 500;">Alat Ukur</span>
                             </div>
                             <div style="display: flex; align-items: center; border-bottom: 1px solid #ccc; padding: 10px;">

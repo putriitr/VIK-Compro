@@ -9,7 +9,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Contact Info</h4>
+                    <h4 class="text-secondary mb-4">{{ __('messages.contact_info') }}</h4>
                     @if(!empty($compro->alamat))
                         <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
                     @else
@@ -28,36 +28,36 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Opening Time</h4>
+                    <h4 class="text-secondary mb-4">{{ __('messages.opening_time') }}</h4>
                     <div class="mb-3">
-                        <h6 class="text-muted mb-0">Mon - Friday:</h6>
-                        <p class="text-white mb-0">09.00 am to 07.00 pm</p>
+                        <h6 class="text-muted mb-0">{{ __('messages.mon_fri') }} :</h6>
+                        <p class="text-white mb-0">{{ __('messages.mon_fri1') }}</p>
                     </div>
                     <div class="mb-3">
-                        <h6 class="text-muted mb-0">Satday:</h6>
-                        <p class="text-white mb-0">10.00 am to 05.00 pm</p>
+                        <h6 class="text-muted mb-0">{{ __('messages.sat') }} :</h6>
+                        <p class="text-white mb-0">{{ __('messages.sat1') }}</p>
                     </div>
                     <div class="mb-3">
-                        <h6 class="text-muted mb-0">Vacation:</h6>
-                        <p class="text-white mb-0">All Sunday is our vacation</p>
+                        <h6 class="text-muted mb-0">{{ __('messages.vacation') }} :</h6>
+                        <p class="text-white mb-0">{{ __('messages.vacation1') }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Quick Access</h4>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Home</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> About</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Products</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Activities</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Portal Member</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Contact</a>
+                    <h4 class="text-secondary mb-4">{{ __('messages.quick_access') }}</h4>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.home') }}</a>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.about') }}</a>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.products') }}</a>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.activity') }}</a>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.portal') }}</a>
+                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> {{ __('messages.contact_us') }}</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item">
-                    <h4 class="text-secondary mb-4">Office Location</h4>
-                    <p class="text-white mb-3">Visit our office at the address below or find us on the map.</p>
+                    <h4 class="text-secondary mb-4">{{ __('messages.location') }}</h4>
+                    <p class="text-white mb-3">{{ __('messages.location_desc') }}</p>
                     <iframe class="rounded w-100" style="height: 200px;"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3160.8915155125464!2d106.84145537499018!3d-6.183059193804441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5425a168055%3A0xc1d79fd15a17dd56!2sPT.%20Virtual%20Inter%20Komunika!5e1!3m2!1sid!2sid!4v1729498268321!5m2!1sid!2sid"
                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

@@ -11,12 +11,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">Daftar Member</h1>
+                    <h1 class="h3">Daftar Member</h1>
                     <a href="{{ route('members.create') }}" class="btn btn-primary">Tambah Member</a>
                 </div>
-
-
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

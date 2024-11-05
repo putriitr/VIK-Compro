@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white">
-                <h3>Daftar Pengunjung</h3>
+                <h1 class="h3">Daftar Pengunjung</h1>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">

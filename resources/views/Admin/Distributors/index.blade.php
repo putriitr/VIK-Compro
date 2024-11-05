@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">Daftar Distributor</h1>
+                    <h1 class="h3">Daftar Distributor</h1>
                     <a href="{{ route('distributors.create') }}" class="btn btn-primary">Tambah Distributor</a>
                 </div>
 

@@ -33,7 +33,7 @@
                         </g>
                     </svg>
                 </div>
-                <span class="nav-link-text ms-1">Dashboard</span>
+                <span class="nav-link-text ms-1">Beranda</span>
             </a>
         </li>
 
@@ -42,7 +42,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Kelola User</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="toggleDropdown()">
+            <a class="nav-link" href="{{ route('members.index')}}" onclick="toggleDropdown()">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -68,7 +68,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="toggleDropdown()">
+            <a class="nav-link" href="{{ route('distributors.index')}}" onclick="toggleDropdown()">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -99,7 +99,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Kelola Produk</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="">
+            <a class="nav-link" href="{{ route('admin.produk.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
@@ -130,7 +130,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Kelola Meta & Konten</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="">
+            <a class="nav-link" href="{{ route('admin.meta.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -188,7 +188,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/rtl.html">
+            <a class="nav-link  " href="{{ route('admin.activity.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
@@ -217,7 +217,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/rtl.html">
+            <a class="nav-link  " href="{{ route('admin.brand.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
@@ -251,7 +251,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Informasi</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/profile.html">
+            <a class="nav-link  " href="{{ route('admin.location.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -285,7 +285,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Master</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/sign-in.html">
+            <a class="nav-link  " href="{{ route('admin.kategori.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1"
@@ -311,7 +311,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/sign-up.html">
+            <a class="nav-link  " href="{{ route('admin.activity.category-activity.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1"

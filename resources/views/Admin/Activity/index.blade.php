@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h1 class="h4">Aktivitas</h1>
+                <h1 class="h3">Aktivitas</h1>
                 <a href="{{ route('admin.activity.create') }}" class="btn btn-primary">Tambah Aktivitas Baru</a>
             </div>
             <div class="card-body">
