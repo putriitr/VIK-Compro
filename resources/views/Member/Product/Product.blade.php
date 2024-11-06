@@ -22,30 +22,33 @@
                         </div>
                         <div class="row">
                             @foreach ($produks as $produk)
-                            <div class="col-lg-4">
-                                <div class="service-item">
-                                    <div class="service-inner position-relative"
-                                        style="overflow: hidden; border-radius: 8px;">
-                                        <div class="service-img">
-                                            <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                                class="img-fluid w-100 rounded" alt="{{ $produk->nama }}"
-                                                style="transition: transform 0.3s ease-in-out;">
+                                <div class="col-lg-4">
+                                    <div class="service-item">
+                                        <div class="service-inner position-relative"
+                                            style="overflow: hidden; border-radius: 8px;">
+                                            <div class="service-img">
+                                                <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                                    class="img-fluid w-100 rounded" alt="{{ $produk->nama }}"
+                                                    style="transition: transform 0.3s ease-in-out;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="service-title text-center mt-n4">
-                                        @php
-                                        $name = $produk->nama;
-                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                    @endphp
-                                        <div class="bg-primary text-center rounded p-3"
-                                            style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
-                                            <a href="{{ route('product.show', $produk->id) }}" class="h5 text-white mb-0"
-                                                style="text-decoration: none;">{{ $limitedName }}</a>
+                                        <div class="service-title text-center mt-n4">
+                                            @php
+                                                $name = $produk->nama;
+                                                $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                            @endphp
+                                            <div class="bg-primary text-center rounded p-3"
+                                                style="transform: translateX(0%); z-index: 1; width: 80%; margin: 0 auto;">
+                                                <a href="{{ route('product.show', $produk->id) }}"
+                                                    class="h5 text-white mb-0"
+                                                    style="text-decoration: none;">{{ $limitedName }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <br><br>
                             @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -56,12 +59,15 @@
                     <div style="margin-top: -60px;">
                         <div
                             style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 25px; overflow: hidden;">
-                            <input type="text" placeholder="Type Keywords Here .."
-                                style="flex: 1; padding: 10px; border: none; outline: none;" />
-                            <button
-                                style="padding: 10px 15px; background-color: #003A66; color: white; border: none; cursor: pointer;">
-                                <i class="fa fa-search" style="margin: 0;"></i>
-                            </button>
+                            <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
+                                @csrf
+                                <input type="text" placeholder="Type Keywords Here .."
+                                    style="flex: 1; padding: 10px; border: none; outline: none;" />
+                                <button
+                                    style="padding: 10px 15px; background-color: #003A66; border-radius: 25px; color: white; border: none; cursor: pointer;">
+                                    <i class="fa fa-search" style="margin: 0;"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <div style="margin-top: 50px; width: 300px;">

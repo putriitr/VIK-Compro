@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     @endforelse
-                    <div class="col-12 text-center">
+                    d<div class="col-12 text-center">
                         <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp"
                             data-wow-delay="0.1s" href="{{ route('portal') }}"><i class="fas fa-arrow-left"></i> Back to
                             Portal Member</a>

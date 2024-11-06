@@ -28,8 +28,8 @@ return [
 
     'home' => 'Home',
     'about' => 'About',
-    'company_activity' => 'Company Activities ',
-    'activity' => 'Our Activities ',
+    'company_activity' => 'Company Activities',
+    'activity' => 'Our Company Activity',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
     'portal' => 'Portal',
@@ -91,6 +91,7 @@ return [
     'your_subject' => 'Your Subject',
     'your_message' => 'Your Message',
     'leave_message' => 'Leave Message',
+    'send_your_message' => 'Send Your Message',
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
 
@@ -137,7 +138,7 @@ return [
     'product_desc' => 'We offer a range of high-quality products designed to meet your needs. Each of our products is carefully selected, providing the best and innovative solutions for everyday life. Browse our collection and find what you are looking for!',
     'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions. With the support of our partners. We are committed to delivering the best products and services to our customers. With the support of our partners, we are committed to delivering the best products and services to our customers.',
     'contact_desc' => 'If you have any questions or need assistance, please fill out the contact form below. Our team will get back to you as soon as possible. Thank you for your trust!',
-    'activity_desc' => 'We are committed to continuous innovation and growth through various corporate activities, including employee development programs, social activities, and industry collaborations. Every activity we undertake is designed to have a positive impact, both for the company and the wider community, and to support our vision and mission in achieving sustainability and long-term growth.',
+    'activity_desc' => 'At PT Virtual Inter Komunika, we are always eager to engage in activities that encourage collaboration. Whether through seminars, workshops, or joint projects, we believe that close cooperation will open up new opportunities and strengthen our position in the industry.',
 
     'service1' => 'High Quality Products',
     'service1_desc' => 'High quality products to meet your needs.',
@@ -190,4 +191,11 @@ return [
     'dok_pendukung' => 'Document',
     'kirim' => 'Send',
     'batal' => 'Cancel',
+    'design_by' => 'Design by  ',
+
+    'contact_title' => 'Have Questions? Do not Hesitate to Contact Us',
+    'contact_desc' => 'For inquiries or further information regarding our products and services, please do not hesitate to contact us. We are here to assist you.',
+    'connect' => 'Lets Connect',
+    'msg1' => 'If you have any questions or need assistance, please feel free to reach out using the form below.',
+    'msg2' => 'We are here to help you!',
 ];

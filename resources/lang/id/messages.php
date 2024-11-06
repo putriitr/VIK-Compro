@@ -79,6 +79,7 @@ return [
 
     'quick_access' => 'Akses Cepat',
     'our_brands' => 'Merek Produk Kami',
+    'our_brands1' => 'Kenali merek-merek terpercaya kami',
     'company_activity' => 'Aktivitas Perusahaan',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
@@ -101,6 +102,7 @@ return [
     'phone' => 'Nomor Telepon',
     'your_subject' => 'Subjek Anda',
     'your_message' => 'Pesan Anda',
+    'send_your_message' => 'Kirim Pesan Anda',
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
 
@@ -150,7 +152,7 @@ return [
     'product_desc' => 'Kami menawarkan berbagai produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan Anda. Setiap produk kami dipilih dengan teliti, memberikan solusi terbaik dan inovatif untuk kehidupan sehari-hari. Jelajahi koleksi kami dan temukan apa yang Anda cari!',
     'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.',
     'contact_desc' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan isi formulir kontak di bawah ini. Tim kami akan segera menghubungi Anda. Terima kasih atas kepercayaan Anda!',
-    'activity_desc' => 'Kami berkomitmen untuk terus berinovasi dan berkembang melalui berbagai aktivitas perusahaan, termasuk program pengembangan karyawan, kegiatan sosial, dan kolaborasi industri. Setiap kegiatan yang kami lakukan dirancang untuk memberikan dampak positif, baik bagi perusahaan maupun masyarakat luas, serta mendukung visi dan misi kami dalam mencapai keberlanjutan dan pertumbuhan jangka panjang.',
+    'activity_desc' => 'Di PT Virtual Inter Komunika, kami selalu bersemangat untuk terlibat dalam berbagai kegiatan yang mendorong kolaborasi. Baik melalui seminar, workshop, maupun proyek bersama, kami percaya bahwa kerjasama yang erat akan membuka peluang baru dan memperkuat posisi kami dalam industri.',
     'customer_desc' => 'Kami bangga melayani kelompok pelanggan yang beragam yang menginspirasi kami untuk terus meningkatkan dan berinovasi. Kepercayaan dan dukungan mereka yang berkelanjutan mendorong kami untuk memberikan produk dan layanan terbaik, memastikan bahwa kami melampaui harapan mereka di setiap langkah.',
 
     'service1' => 'Produk Kualitas Tinggi',
@@ -204,4 +206,11 @@ return [
     'dok_pendukung' => 'Dokumen Pendukung',
     'kirim' => 'Kirim',
     'batal' => 'Batal',
+    'design_by' => 'Dibuat oleh  ',
+
+    'contact_title' => 'Ada Pertanyaan? Jangan Ragu untuk Menghubungi Kami',
+    'contact_desc' => 'Untuk pertanyaan atau informasi lebih lanjut mengenai produk dan layanan kami, jangan ragu untuk menghubungi kami. Kami siap membantu Anda.',
+    'connect' => 'Mari Terhubung',
+    'msg1' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, jangan ragu untuk menghubungi kami melalui formulir di bawah ini.',
+    'msg2' => 'Kami di sini untuk membantu Anda!',
 ];

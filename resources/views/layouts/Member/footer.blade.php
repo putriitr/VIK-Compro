@@ -15,8 +15,8 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     @else
                         <p><i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}</p>
                     @endif
-                    <a href=""><i class="fas fa-envelope me-2"></i> business@vik.co.id</a>
-                    <a href=""><i class="fas fa-phone me-2"></i> (021) 23951673</a><br>
+                    <a href=""><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
+                    <a href=""><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon }}</a><br>
                     <div class="d-flex align-items-center">
                         <i class="fas fa-share fa-2x text-secondary me-2"></i>
                         <a class="btn mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -78,7 +78,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                             class="fas fa-copyright text-light me-2"></i> 2024</a></span>
             </div>
             <div class="col-md-6 text-center text-md-end text-white">
-                Designed By <a class="border-bottom text-white" href=""> PT Virtual Inter Komunika</a>
+                {{ __('messages.design_by') }} <a class="border-bottom text-white" href=""> PT Virtual Inter Komunika</a>
             </div>
         </div>
     </div>

@@ -1,14 +1,34 @@
 <body>
+    @php
+        // Fetch the first record from the company_parameter table
+        $compro = \App\Models\CompanyParameter::first();
+    @endphp
+
+    @php
+        $activeMetas = \App\Models\Meta::where('start_date', '<=', today())
+            ->where('end_date', '>=', today())
+            ->get()
+            ->groupBy('type');
+
+        $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
+    @endphp
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary px-5 d-none d-lg-block">
         <div class="row gx-0 align-items-center">
             <div class="col-lg-5 text-center text-lg-start mb-lg-0">
                 <div class="d-flex">
                     <a href="mailto:business@vik.co.id" class="text-muted me-4">
-                        <i class="fas fa-envelope text-secondary me-2"></i>business@vik.co.id
+                        <i class="fas fa-envelope text-secondary me-2"></i>{{ $compro->email }}
                     </a>
                     <a href="tel:(021)23951673" class="text-muted me-0">
-                        <i class="fas fa-phone-alt text-secondary me-2"></i>(021) 23951673
+                        <i class="fas fa-phone-alt text-secondary me-2"></i>{{ $compro->no_wa }}
                     </a>
                 </div>
             </div>
@@ -65,7 +85,14 @@
                         </a>
                         <div class="dropdown-menu m-0">
                             <a href="{{ route('member.activity') }}" class="dropdown-item {{ request()->is('activity') ? 'active' : '' }}">{{ __('messages.activity') }}</a>
-                            <a href="countries.html" class="dropdown-item {{ request()->is('countries') ? 'active' : '' }}">{{ __('messages.meta') }}</a>
+                            @foreach ($activeMetas as $type => $metas)
+                                <div class="nav-item dropdown">
+                                    @foreach ($metas as $meta)
+                                        <a href="{{ route('member.meta.index') }}"
+                                            class="dropdown-item">{{ __('messages.meta') }}</a>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 

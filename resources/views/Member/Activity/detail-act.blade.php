@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @section('content')
     <!-- Activity Detail Start -->
@@ -28,7 +28,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-12">
                                     <div class="video h-100">
-                                        <img src="{{ asset($activity->image) }}" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 400px; margin-bottom: 10px;" alt="Activity Image">
+                                        <img src="{{ asset($activity->image_url) }}" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 400px; margin-bottom: 10px;" alt="Activity Image">
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,11 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif<br><br>
+            <div class="col-12 text-center">
+                <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp"
+                    data-wow-delay="0.1s" href="{{ route('member.activity') }}"><i class="fas fa-arrow-left"></i> Back to Activity Page</a>
+            </div>
         </div>
     </div>
 @endsection

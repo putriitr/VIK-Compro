@@ -1,13 +1,18 @@
+@php
+$compro = \App\Models\CompanyParameter::first();
+$brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
+@endphp
+
 @extends('layouts.Member.master')
 
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Contact Us</h1>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.contact_us') }}</h1>
                 <ol class="breadcrumb justify-content-center text-white mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-                    <li class="breadcrumb-item active text-secondary">Contact Us</li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white">{{ __('messages.home') }}</a></li>
+                    <li class="breadcrumb-item active text-secondary">{{ __('messages.contact_us') }}</li>
                 </ol>
         </div>
     </div>
@@ -19,16 +24,15 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="sub-style">
-                        <h5 class="sub-title text-primary pe-3">Quick Contact</h5>
+                        <h5 class="sub-title text-primary pe-3">{{ __('messages.quick_access') }}</h5>
                     </div>
-                    <h1 class="display-5 mb-4">Have Questions? Don't Hesitate to Contact Us</h1>
-                    <p class="mb-5">For inquiries or further information regarding our products and services, please do
-                        not hesitate to contact us. We are here to assist you.</p>
+                    <h1 class="display-5 mb-4">{{ __('messages.contact_title') }}</h1>
+                    <p class="mb-5">{{ __('messages.contact_desc') }}</p>
                     <div class="d-flex border-bottom mb-4 pb-4">
                         <i class="fas fa-map-marked-alt fa-4x text-primary bg-light p-3 rounded"></i>
                         <div class="ps-3">
-                            <h5>Our Location</h5>
-                            <p>Jl. Pal Putih No.193A, Kramat, Senen, Jakarta Pusat 10450</p>
+                            <h5>{{ __('messages.location') }}</h5>
+                            <p>{{ $compro->alamat }}</p>
                         </div>
                     </div>
                     <div class="row g-3">
@@ -36,14 +40,14 @@
                             <div class="d-flex">
                                 <i class="fas fa-tty fa-3x text-primary"></i>
                                 <div class="ps-3">
-                                    <h5 class="mb-3">Quick Contact</h5>
+                                    <h5 class="mb-3">{{ __('messages.contact_us') }}</h5>
                                     <div class="mb-3">
-                                        <h6 class="mb-0">Phone:</h6>
-                                        <a href="#" class="fs-5 text-primary">(021) 23951673</a>
+                                        <h6 class="mb-0">{{ __('messages.phone') }} :</h6>
+                                        <a href="#" class="fs-5 text-primary">{{ $compro->no_wa}}</a>
                                     </div>
                                     <div class="mb-3">
-                                        <h6 class="mb-0">Email:</h6>
-                                        <a href="#" class="fs-5 text-primary">business@vik.co.id</a>
+                                        <h6 class="mb-0">Email :</h6>
+                                        <a href="#" class="fs-5 text-primary">{{ $compro->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -52,14 +56,14 @@
                             <div class="d-flex">
                                 <i class="fas fa-clone fa-3x text-primary"></i>
                                 <div class="ps-3">
-                                    <h5 class="mb-3">Opening Hrs</h5>
+                                    <h5 class="mb-3">{{ __('messages.opening_time') }}</h5>
                                     <div class="mb-3">
-                                        <h6 class="mb-0">Mon - Friday:</h6>
-                                        <a href="#" class="fs-5 text-primary">09.00 am to 07.00 pm</a>
+                                        <h6 class="mb-0">{{ __('messages.mon_fri') }} :</h6>
+                                        <a href="#" class="fs-5 text-primary">{{ __('messages.mon_fri1') }}</a>
                                     </div>
                                     <div class="mb-3">
-                                        <h6 class="mb-0">Satday:</h6>
-                                        <a href="#" class="fs-5 text-primary">10.00 am to 05.00 pm</a>
+                                        <h6 class="mb-0">{{ __('messages.sat') }} :</h6>
+                                        <a href="#" class="fs-5 text-primary">{{ __('messages.sat1') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -83,11 +87,10 @@
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3">
                     <div class="sub-style">
-                        <h5 class="sub-title text-primary pe-3">Let’s Connect</h5>
+                        <h5 class="sub-title text-primary pe-3">{{ __('messages.connect') }}</h5>
                     </div>
-                    <h1 class="display-5 mb-4">Send Your Message</h1>
-                    <p class="mb-3">If you have any questions or need assistance, please feel free to reach out using the
-                        form below. <strong>We're here to help you!</strong></p>
+                    <h1 class="display-5 mb-4">{{ __('messages.send_your_message') }}</h1>
+                    <p class="mb-3">{{ __('messages.msg1') }} <strong>{{ __('messages.msg2') }}</strong></p>
                     <form action="" method="POST">
                         @csrf
                         <div class="row g-4">
@@ -95,46 +98,46 @@
                                 <div class="form-floating">
                                     <input type="text" name="first_name" class="form-control" id="first_name"
                                         placeholder="Your First Name" required>
-                                    <label for="first_name">First Name</label>
+                                    <label for="first_name">{{ __('messages.first_name') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="text" name="last_name" class="form-control" id="last_name"
                                         placeholder="Your Last Name" required>
-                                    <label for="last_name">Last Name</label>
+                                    <label for="last_name">{{ __('messages.last_name') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="email" name="email" class="form-control" id="email"
                                         placeholder="Your Email" required>
-                                    <label for="email">Your Email</label>
+                                    <label for="email">{{ __('messages.your_email') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="text" name="phone" class="form-control" id="phone"
                                         placeholder="Your Phone" required>
-                                    <label for="phone">Your Phone</label>
+                                    <label for="phone">{{ __('messages.phone') }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input type="text" name="subject" class="form-control" id="subject"
                                         placeholder="Subject" required>
-                                    <label for="subject">Subject</label>
+                                    <label for="subject">{{ __('messages.your_subject') }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea name="message" class="form-control" placeholder="Leave a message here" id="message"
                                         style="height: 160px" required></textarea>
-                                    <label for="message">Message</label>
+                                    <label for="message">{{ __('messages.your_message') }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
+                                <button type="submit" class="btn btn-primary w-100 py-3">{{ __('messages.send_message') }}</button>
                             </div>
                         </div>
                     </form>

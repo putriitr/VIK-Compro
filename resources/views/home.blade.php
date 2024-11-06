@@ -229,11 +229,12 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="{{ route('product.index')}}">{{ __('messages.show_more') }}</a>
+                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4"
+                        href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div><br><br>
     <!-- Services End -->
 
     <!-- Brand Start -->
@@ -242,19 +243,15 @@
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h4 class="text-primary">{{ __('messages.our_brands1') }}</h4>
                 <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
-                <p class="mb-0">{{ __('messages.brands_desc1') }}</p>
+                {{-- <p class="mb-0">{{ __('messages.brands_desc1') }}</p> --}}
             </div>
             @if ($partners->isEmpty())
                 <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
-                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
-                        <div class="carousel-row"
-                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
-                            <div>
-                                <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
-                                    {{ __('messages.brand_not_available') }}
-                                </p>
-                            </div>
-                        </div>
+                    <div class="carousel-rows"
+                        style="display: flex; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                        <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
+                            {{ __('messages.brand_not_available') }}
+                        </p>
                     </div>
                 </div>
             @else
@@ -275,93 +272,99 @@
     <style>
         .carousel-container {
             position: relative;
-            overflow: hidden;
-            height: 150px;
-            /* Adjust height for two rows */
+            overflow-x: scroll;
+            white-space: nowrap;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling for iOS */
         }
 
         .carousel-rows {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            /* 4 images per row */
-            grid-auto-rows: 120px;
-            /* Fixed height for each row */
-            animation: marquee 50s linear infinite;
-            position: relative;
+            display: inline-flex;
+            /* Set animation for continuous scrolling */
+            animation: marquee-horizontal 200s linear infinite;
         }
 
         .brand-item {
+            width: 120px;
+            /* Fixed width for brand item */
+            height: 80px;
+            /* Fixed height */
             margin: 10px;
             border: 2px solid #ddd;
-            /* Border around each image */
             border-radius: 5px;
-            /* Rounded corners for the border */
-            display: flex;
-            justify-content: center;
-            /* Center the image inside the item */
-            align-items: center;
-            /* Center the image vertically */
             overflow: hidden;
-            /* Hide overflow if image is too big */
+            scroll-snap-align: start;
+            /* For snap scrolling */
         }
 
-        img {
-            width: 100%;
-            /* Make image fill the container */
-            height: 100%;
-            /* Maintain height for uniformity */
+        .brand-item img {
+            width: 100px;
+            height: 50px;
             object-fit: cover;
-            /* Cover the area of the item */
         }
 
-        @keyframes marquee {
+        /* Horizontal marquee animation */
+        @keyframes marquee-horizontal {
             0% {
-                transform: translateY(0);
+                transform: translateX(0);
             }
 
             100% {
-                transform: translateY(-100%);
+                transform: translateX(-100%);
             }
         }
     </style>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const carouselRows = document.getElementById("carouselRows");
-            const container = document.querySelector('.carousel-container');
+            const carouselContainer = document.querySelector(".carousel-container");
+            const carouselRows = document.querySelector(".carousel-rows");
 
-            // Clone the carousel rows to create a seamless loop
-            const clonedRows = carouselRows.cloneNode(true);
-            carouselRows.appendChild(clonedRows);
+            // Enable dragging functionality
+            let isDragging = false;
+            let startX, scrollLeft;
 
-            // Calculate total height after cloning
-            const totalHeight = carouselRows.scrollHeight; // Get the total height of the images
-            const containerHeight = container.clientHeight;
+            carouselContainer.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                startX = e.pageX - carouselContainer.offsetLeft;
+                scrollLeft = carouselContainer.scrollLeft;
+            });
 
-            // Set animation duration based on the total height
-            // The factor of 120 can be adjusted based on the speed you desire
-            const duration = (totalHeight / 120) * 30; // Adjust based on desired speed
+            carouselContainer.addEventListener("mouseleave", () => {
+                isDragging = false;
+            });
 
-            // Ensure the animation runs smoothly
-            carouselRows.style.animation = `marquee ${duration}s linear infinite`;
+            carouselContainer.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
 
-            // Initial position for the cloned content
-            carouselRows.style.transform = `translateY(0)`;
+            carouselContainer.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - carouselContainer.offsetLeft;
+                const walk = (x - startX) * 3; // Adjust scroll speed
+                carouselContainer.scrollLeft = scrollLeft - walk;
+            });
 
-            // Function to reset scroll position when reaching the end of the first set
-            const resetScrollPosition = () => {
-                const scrollTop = container.scrollTop;
+            // Touch events for mobile
+            carouselContainer.addEventListener("touchstart", (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+                scrollLeft = carouselContainer.scrollLeft;
+            });
 
-                // Reset position when the original rows are scrolled out of view
-                if (scrollTop >= totalHeight / 2) {
-                    // Reset the scroll position back to the start
-                    carouselRows.style.transform = `translateY(0)`;
-                    container.scrollTop = 0; // Reset scroll position
-                }
-            };
+            carouselContainer.addEventListener("touchend", () => {
+                isDragging = false;
+            });
 
-            // Listen for scroll events to reset position
-            container.addEventListener('scroll', resetScrollPosition);
+            carouselContainer.addEventListener("touchmove", (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+                const walk = (x - startX) * 3;
+                carouselContainer.scrollLeft = scrollLeft - walk;
+            });
         });
     </script>
 @endsection
