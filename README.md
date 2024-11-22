@@ -1,5 +1,5 @@
-# Company Profile of AGS
-Website company profile ini menyajikan informasi lengkap mengenai perusahaan PT Arkamaya Guna Saharsa yang dirancang untuk memberikan kesan profesional dan kredibel, serta mempermudah pengunjung untuk mengenal perusahaan secara lebih mendalam.
+# Company Profile of VIK
+Website company profile ini menyajikan informasi lengkap mengenai perusahaan PT Virtual Inter Komunika yang dirancang untuk memberikan kesan profesional dan kredibel, serta mempermudah pengunjung untuk mengenal perusahaan secara lebih mendalam.
 
 ---
 
