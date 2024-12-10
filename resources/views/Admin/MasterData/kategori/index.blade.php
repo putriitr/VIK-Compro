@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-lg">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="h3">Kategori List</h1>
+                    <h3>Kategori List</h3>
                     <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">Tambah Kategori Baru</a>
                 </div>
                 <div class="card-body">

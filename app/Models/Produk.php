@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Quotation;
 
 class Produk extends Model
 {
@@ -12,7 +13,7 @@ class Produk extends Model
     protected $table = 'produk';
 
 
-    protected $fillable = ['nama', 'merk', 'tipe', 'link', 'tentang_produk','kegunaan', 'deskripsi', 'spesifikasi', 'user_manual','kategori_id'];
+    protected $fillable = ['nama', 'merk', 'tipe', 'link', 'gambar', 'tentang_produk','kegunaan', 'deskripsi', 'spesifikasi', 'user_manual','kategori_id', 'vendor_id'];
 
     public function images()
     {
@@ -48,4 +49,18 @@ class Produk extends Model
         return $this->hasMany(Brosur::class); // or use a different relationship type if necessary
     }
 
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class, 'produk_id');
+    }
+
+    public function quotationProducts()
+    {
+        return $this->hasMany(QuotationProduct::class, 'produk_id'); // Sesuaikan jika kolomnya adalah 'product_id'
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
 }

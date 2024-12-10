@@ -1,10 +1,10 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header">
-            <h1 class="h3">Daftar Kategori Aktivitas</h1>
+            <h1 class="h4">Daftar Kategori Aktivitas</h1>
             <a href="{{ route('admin.activity.category-activity.create') }}" class="btn btn-primary">Tambah Kategori</a>
         </div>
 

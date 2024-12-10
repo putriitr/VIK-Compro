@@ -1,20 +1,36 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
     @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="h3">Daftar Member</h1>
+                    <h1 class="card-title">Daftar Member</h1>
                     <a href="{{ route('members.create') }}" class="btn btn-primary">Tambah Member</a>
                 </div>
+
                 <div class="card-body">
+                    <!-- Form Pencarian -->
+                    <form action="{{ route('members.index') }}" method="GET" class="mb-4">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Cari nama atau perusahaan..." value="{{ request('search') }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary"><i
+                                        class="fas fa-search me-1"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Tabel Data -->
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead-dark">
@@ -28,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($members as $member)
+                                @forelse ($members as $member)
                                     <tr>
                                         <td>{{ $member->name }}</td>
                                         <td>{{ $member->email }}</td>
@@ -47,13 +63,18 @@
                                             <a href="{{ route('members.edit-products', $member->id) }}" class="btn btn-warning btn-sm">Edit Produk</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">Data tidak ditemukan.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
 
+                    <!-- Pagination -->
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $members->links() }}
+                        {{ $members->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

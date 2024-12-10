@@ -15,17 +15,29 @@ use Illuminate\Support\Str;
 
 class ProdukController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
-        $selectedCategory = $request->get('category_id');
-        $kategori = Kategori::all();
-        // Menggunakan paginate untuk mendapatkan paginasi
-        $produks = Produk::when($selectedCategory, function ($query) use ($selectedCategory) {
-            return $query->where('category_id', $selectedCategory);
-        })->paginate(6); // Ubah angka sesuai dengan jumlah produk yang ingin ditampilkan per halaman
+        // Ambil keyword pencarian dan kategori dari input pengguna
+        $keyword = $request->input('search');
+        $kategoriId = $request->input('kategori');
 
-        return view('admin.produk.index', compact('kategori', 'produks', 'selectedCategory'));
+        // Query produk dengan pencarian, kategori, dan pagination
+        $produks = Produk::when($keyword, function ($query) use ($keyword) {
+            $query->where('nama', 'like', "%{$keyword}%")
+                ->orWhere('merk', 'like', "%{$keyword}%");
+        })->when($kategoriId, function ($query) use ($kategoriId) {
+            $query->where('kategori_id', $kategoriId);
+        })->paginate(10);
+
+        // Ambil semua kategori untuk dropdown filter
+        $kategori = Kategori::all();
+
+        return view('Admin.Produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +45,7 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.produk.create', (compact('kategori')));
+        return view('Admin.Produk.create', (compact('kategori')));
     }
 
     /**
@@ -49,7 +61,6 @@ class ProdukController extends Controller
             'kegunaan' => 'required|string',
             'deskripsi' => 'required',
             'spesifikasi' => 'required',
-            'tentang_produk' => 'required|string',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
@@ -62,7 +73,7 @@ class ProdukController extends Controller
 
         // Create a new Produk instance and fill it with the validated data
         $produk = new Produk;
-        $produk->fill($request->all());
+        $produk->fill($request->except(['gambar', 'video', 'file', 'document_certification_pdf', 'user_manual']));
         $produk->save();
 
         // Handle user manual upload
@@ -131,6 +142,8 @@ class ProdukController extends Controller
                 ]);
             }
         }
+
+
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
 
@@ -142,14 +155,17 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
         $kategori = Kategori::all();
-        return view('admin.produk.edit', compact('produk', 'kategori'));
+        return view('Admin.Produk.edit', compact('produk', 'kategori'));
     }
 
     public function show($id)
     {
         $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
-        return view('admin.produk.show', compact('produk'));
+        return view('Admin.Produk.show', compact('produk'));
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -160,7 +176,6 @@ class ProdukController extends Controller
             'nama' => 'required|string|max:255',
             'merk' => 'required|string|max:255',
             'kegunaan' => 'required',
-            'tentang_produk' => 'required|string',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
@@ -170,7 +185,7 @@ class ProdukController extends Controller
         ]);
 
         $produk = Produk::findOrFail($id);
-        $produk->fill($request->all());
+        $produk->fill($request->except(['gambar', 'video', 'file', 'document_certification_pdf', 'user_manual']));
         $produk->save();
 
 
@@ -226,6 +241,8 @@ class ProdukController extends Controller
             }
         }
 
+
+
         // Handle video upload
         if ($request->hasFile('video')) {
             foreach ($request->file('video') as $videoFile) {
@@ -243,6 +260,10 @@ class ProdukController extends Controller
         // Handle images upload
         if ($request->hasFile('gambar')) {
             foreach ($request->file('gambar') as $imgProduk) {
+                if (is_array($imgProduk)) {
+                    // Pastikan untuk memeriksa jika data ini array
+                    continue;
+                }
                 $slug = Str::slug(pathinfo($imgProduk->getClientOriginalName(), PATHINFO_FILENAME));
                 $newImageName = time() . '_' . $slug . '.' . $imgProduk->getClientOriginalExtension();
                 $imgProduk->move('uploads/produk/', $newImageName);

@@ -30,7 +30,7 @@
                 <!-- Tampilkan Gambar Default Jika Tidak Ada Slider -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('assets/img/bg-login.jpg') }}" alt="No Sliders Available" class="d-block w-100">
+                        <img src="{{ asset('assets/img/product-1.jpg') }}" alt="No Sliders Available" class="d-block w-100">
                         <div class="carousel-caption">
                             <div class="text-center p-4" style="max-width: 900px;">
                                 <h4 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp"
@@ -138,96 +138,44 @@
                     <h5 class="sub-title text-primary px-3">{{ __('messages.find_products') }}</h5>
                 </div>
                 <h1 class="display-5 mb-4">{{ __('messages.our_products') }}</h1>
-                <p class="mb-0">{{ __('messages.product_desc1') }}</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                    alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Product Name</a>
+                @if (!$produks->isEmpty())
+                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
+                        @foreach ($produks as $produk)
+                            <div class="service-item">
+                                <div class="service-inner">
+                                    <div class="service-img">
+                                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                            class="img-fluid w-100 rounded" alt="Image">
+                                    </div>
+                                    <div class="service-title">
+                                        <div class="service-title-name">
+                                            <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
+                                                <a href="{{ route('product.show', $produk->id) }}" class="h4 text-white mb-0">{{ $produk->nama }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="service-content pb-4">
+                                            <a href="#">
+                                                <h4 class="text-white mb-4 py-3">Job Visa</h4>
+                                            </a>
+                                            <div class="px-4">
+                                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                                    Mollitia fugit dolores nesciunt adipisci obcaecati veritatis cum,
+                                                    ratione
+                                                    aspernatur autem velit.</p>
+                                                <a class="btn btn-primary border-secondary rounded-pill py-3 px-5"
+                                                    href="#">Explore More</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="service-content pb-4">
-                                    <a href="#">
-                                        <h4 class="text-white mb-4 py-3">Job Visa</h4>
-                                    </a>
-                                    <div class="px-4">
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Mollitia fugit dolores nesciunt adipisci obcaecati veritatis cum, ratione
-                                            aspernatur autem velit.</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill py-3 px-5"
-                                            href="#">Explore More</a>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                    alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Product Name</a>
-                                    </div>
-                                </div>
-                                <div class="service-content pb-4">
-                                    <a href="#">
-                                        <h4 class="text-white mb-4 py-3">Business Visa</h4>
-                                    </a>
-                                    <div class="px-4">
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Mollitia fugit dolores nesciunt adipisci obcaecati veritatis cum, ratione
-                                            aspernatur autem velit.</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5"
-                                            href="#">Explore More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{{ asset('assets/img/product-1.jpg') }}" class="img-fluid w-100 rounded"
-                                    alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Product Name</a>
-                                    </div>
-                                </div>
-                                <div class="service-content pb-4">
-                                    <a href="#">
-                                        <h4 class="text-white mb-4 py-3">Diplometic Visa</h4>
-                                    </a>
-                                    <div class="px-4">
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Mollitia fugit dolores nesciunt adipisci obcaecati veritatis cum, ratione
-                                            aspernatur autem velit.</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5"
-                                            href="#">Explore More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @else
+                    <p class="text-white text-center">{{ __('messages.product_not_available') }}</p>
+                @endif
                 <div class="d-flex justify-content-center align-items-center">
                     <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4"
                         href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
@@ -243,7 +191,6 @@
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h4 class="text-primary">{{ __('messages.our_brands1') }}</h4>
                 <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
-                {{-- <p class="mb-0">{{ __('messages.brands_desc1') }}</p> --}}
             </div>
             @if ($partners->isEmpty())
                 <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">

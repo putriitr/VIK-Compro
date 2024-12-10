@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\Member\MemberController;
 use App\Http\Controllers\Admin\FAQ\FAQController;
-use App\Http\Controllers\Admin\Monitoring\MonitoringController;
 use App\Http\Controllers\Admin\Parameter\CompanyParameterController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
@@ -31,11 +30,27 @@ use App\Http\Controllers\Admin\Activity\CategoryActivityController;
 use App\Http\Controllers\Distributor\PortalDistributor\PortalDistributorController;
 use App\Exports\CustomerReportExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Controllers\Distributor\CustomerReportController;
-use App\Http\Controllers\Distributor\DistributorController;
+use App\Http\Controllers\Admin\Ticket\TicketController;
+use App\Http\Controllers\Member\Ticket\TicketMemberController;
+use App\Http\Controllers\Admin\Distributor\DistributorApprovalController;
+use App\Http\Controllers\Admin\Invoice\InvoiceAdminController;
+use App\Http\Controllers\Admin\ProformaInvoice\ProformaInvoiceAdminController;
+use App\Http\Controllers\Admin\PurchaseOrder\PurchaseOrderAdminController;
+use App\Http\Controllers\Distribution\Portal\DistributionController;
+use App\Http\Controllers\Distribution\Portal\TicketDistributorController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Distribution\Portal\QuotationController;
+use App\Http\Controllers\Admin\Quotation\QuotationAdminController;
+use App\Http\Controllers\Admin\Quotation\QuotationNegotiationController;
+use App\Http\Controllers\Distribution\Portal\DistributorQuotationNegotiationController;
+use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
+use App\Http\Controllers\Distribution\Portal\InvoiceController;
+use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
+use App\Http\Controllers\Admin\Admin\AdminController;
+use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
+use App\Http\Controllers\Admin\Vendor\VendorAdminController;
 use App\Http\Controllers\Vendor\VendorController;
-use App\http\Controller\Admin\Ticketing\TicketingController;
-use App\Http\Controllers\Member\Ticketing\TicketingMemberController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +70,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
     Route::get('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
-    Route::post('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
+    Route::match(['GET', 'POST'], 'products/search', [ProdukMemberController::class, 'search'])->name('products.search');
 
     Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
     Route::get('/member/activities', [ActivityMemberController::class, 'activity'])->name('member.activity');
@@ -74,68 +89,151 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('qnaguest', QnaGuestController::class);
     });
 
+    // Distributor Registration
+    Route::get('/distributors/register', [RegisterController::class, 'showDistributorRegistrationForm'])->name('distributors.register');
+    Route::post('/distributors/register', [RegisterController::class, 'registerDistributor']);
+    Route::get('/distributors/waiting', function () {
+        return view('auth.distributor_waiting');
+    })->name('distributors.waiting');
+
     Auth::routes();
 });
 
 // Member Routes (Authenticated Users with "member" role)
 Route::middleware(['auth', 'user-access:member'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-        Route::get('/portal', [PortalController::class, 'index'])->name('portal')->middleware('role:member');
-            Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
-            Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
-            Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
-            Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
-            Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
-            Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-            Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
-            Route::get('/portal/qna', [PortalController::class, 'aftersalesService'])->name('portal.aftersales-service');
-            Route::get('/portal/aftersales-service', [PortalController::class, 'Faq'])->name('portal.qna');
-            Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
-            Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
+        Route::get('/portal', [PortalController::class, 'index'])->name('portal');
+        Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
+        Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
+        Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
+        Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
+        Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
+        Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
+        Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
+        Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
 
+        // Routes Tiketing Layanan untuk Member
+        Route::get('/portal/tickets', [TicketMemberController::class, 'index'])->name('tickets.index');
+        Route::get('/portal/tickets/create', [TicketMemberController::class, 'create'])->name('tickets.create');
+        Route::post('/portal/tickets', [TicketMemberController::class, 'store'])->name('tickets.store');
+        Route::get('/portal/tickets/{id}', [TicketMemberController::class, 'show'])->name('tickets.show');
+        Route::get('/portal/tickets/{id}/edit', [TicketMemberController::class, 'edit'])->name('tickets.edit');
+        Route::put('/portal/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
+        Route::put('/portal/tickets/{id}', [TicketMemberController::class, 'update'])->name('tickets.update');
+
+        Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
         Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
 
-        // Profile Management
+        Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
     });
 });
 
-
 // Distributor Routes (Authenticated Users with "distributor" role)
 Route::middleware(['auth', 'user-access:distributor'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-        Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal')->middleware('role:distributor');
-        Route::get('/dist-portal/dist-report', [PortalDistributorController::class, 'customerReport'])->name('dist-report');
-        Route::get('/dist-portal/dist-quotation', [PortalDistributorController::class, 'quotation'])->name('dist-quotation');
-        Route::get('/dist-portal/dist-proforma', [PortalDistributorController::class, 'proformaInvoice'])->name('dist-proforma');
-        Route::get('/dist-portal/dist-invoice', [PortalDistributorController::class, 'invoice'])->name('dist-invoice');
-        Route::get('/dist-portal/dist-service', [PortalDistributorController::class, 'aftersalesService'])->name('dist-service');
+        Route::get('/portal/distribution', [DistributionController::class, 'index'])->name('distribution');
+        Route::get('/portal/distribution/request-quotation', [DistributionController::class, 'requestQuotation'])->name('distribution.request-quotation');
+        Route::get('/portal/distribution/create-po', [DistributionController::class, 'createPO'])->name('distribution.create-po');
+        Route::get('/portal/distribution/invoices', [DistributionController::class, 'invoices'])->name('distribution.invoices');
 
-        // Rute tambahan untuk laporan pelanggan dan ekspor laporan
-        Route::get('/dist-portal/customer-report', [PortalDistributorController::class, 'customerReport'])->name('customer-report');
-        Route::get('/dist-portal/export-customer-report', [PortalDistributorController::class, 'exportCustomerReport'])->name('customer-report.export');
+        // Routes for Distributor Ticketing Service
+        Route::get('/portal/distribution/tickets', [TicketDistributorController::class, 'index'])->name('distribution.tickets.index');
+        Route::get('/portal/distribution/tickets/create', [TicketDistributorController::class, 'create'])->name('distribution.tickets.create');
+        Route::post('/portal/distribution/tickets', [TicketDistributorController::class, 'store'])->name('distribution.tickets.store');
+        Route::get('/portal/distribution/tickets/{id}', [TicketDistributorController::class, 'show'])->name('distribution.tickets.show');
+        Route::get('/portal/distribution/tickets/{id}/edit', [TicketDistributorController::class, 'edit'])->name('distribution.tickets.edit');
+        Route::put('/portal/distribution/tickets/{id}/cancel', [TicketDistributorController::class, 'cancel'])->name('distribution.tickets.cancel');
+        Route::put('/portal/distribution/tickets/{id}', [TicketDistributorController::class, 'update'])->name('distribution.tickets.update');
+
+        Route::post('/portal/distribution/product/{id}/add-to-quotation', [ProdukMemberController::class, 'addToQuotation'])->name('Distributor.product.addToQuotation');
+        // Menampilkan halaman keranjang quotation
+        Route::get('/quotations/cart', [QuotationController::class, 'cart'])->name('quotations.cart');
+
+        // Menambahkan produk ke keranjang
+        Route::post('/quotations/add-to-cart', [QuotationController::class, 'addToCart'])->name('quotations.add_to_cart');
+
+        // Mengirim permintaan quotation dari keranjang
+        Route::post('/quotations/submit', [QuotationController::class, 'submitCart'])->name('quotations.submit');
+
+        // Update quantity di keranjang
+        Route::put('/quotations/update-cart', [QuotationController::class, 'updateCart'])->name('quotations.cart.update');
+
+        // Hapus item dari keranjang
+        Route::delete('/quotations/remove-from-cart', [QuotationController::class, 'removeFromCart'])->name('quotations.cart.remove');
+
+        // Rute untuk negosiasi quotation
+        Route::get('/quotations/{id}/nego', [QuotationController::class, 'nego'])->name('quotations.nego');
+
+        // Route untuk menampilkan form negosiasi
+        Route::get('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'create'])->name('distributor.quotations.negotiations.create');
+
+        // Route untuk menyimpan negosiasi
+        Route::post('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'store'])->name('distributor.quotations.negotiations.store');
+        Route::get('/distributor/quotations/negotiations', [DistributorQuotationNegotiationController::class, 'index'])->name('distributor.quotations.negotiations.index');
+        Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
+        Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
+        Route::get('/proforma-invoices/{id}', [ProformaInvoiceDistributorController::class, 'show'])->name('distributor.proforma-invoices.show');
+
+        Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
+
+        // Quotation Routes
+        Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show');
+        Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel');
+        Route::get('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'create'])->name('quotations.create_po');
+        Route::post('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'store'])->name('quotations.store_po');
+        Route::get('/distributor/purchase-orders', [PurchaseOrderController::class, 'index'])->name('distributor.purchase-orders.index');
+
+        Route::get('/distributor/profile', [ProfileDistributorController::class, 'show'])->name('distributor.profile.show');
+        Route::get('/distributor/profile/edit', [ProfileDistributorController::class, 'edit'])->name('distributor.profile.edit');
+        Route::put('/distributor/profile/update', [ProfileDistributorController::class, 'update'])->name('distributor.profile.update');
     });
 });
 
 // Vendor Routes (Authenticated Users with "vendor" role)
 Route::middleware(['auth', 'user-access:vendor'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-        Route::get('/vendor-portal', [VendorController::class, 'index'])->name('vendor-portal')->middleware('role:distributor');
+        Route::get('/portal/vendor', [VendorController::class, 'portal'])->name('vendor.portal');
+        Route::get('en/products/{vendorId}', [ProdukController::class, 'index'])->name('vendor.products.index');
+        Route::post('products/upload/{vendorId}', [ProdukController::class, 'upload'])->name('vendor.products.upload');
     });
 });
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-        Route::resource('admin/ticketings', TicketingController::class)->names('admin.ticketings');
-
-        Route::post('admin/ticketings/{ticketing}/process', [TicketingController::class, 'process'])->name('admin.ticketings.process');
-        Route::post('admiFn/ticketings/{ticketing}/complete', [TicketingController::class, 'complete'])->name('admin.ticketings.complete');
-
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+        Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
+        Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
+        Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show');
+
+        // CRUD Admin
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+        Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+        Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+        Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update');
+        Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+        // CRUD Vendor
+        Route::get('/vendor', [VendorAdminController::class, 'index'])->name('admin.vendors.index');
+        Route::get('/vendor/create', [VendorAdminController::class, 'create'])->name('admin.vendors.create');
+        Route::post('/vendor', [VendorAdminController::class, 'store'])->name('admin.vendors.store');
+        Route::get('/vendor/{vendor}/edit', [VendorAdminController::class, 'edit'])->name('admin.vendors.edit');
+        Route::put('/vendor/{vendor}', [VendorAdminController::class, 'update'])->name('admin.vendors.update');
+        Route::delete('/vendor/{vendor}', [VendorAdminController::class, 'destroy'])->name('admin.vendors.destroy');
+        Route::get('/vendor/{vendor}', [VendorAdminController::class, 'show'])->name('admin.vendors.show');
+        Route::get('vendors/{id}/add-products', [VendorAdminController::class, 'addProducts'])->name('admin.vendors.add-products');
+        Route::post('vendors/{id}/store-products', [VendorAdminController::class, 'storeProducts'])->name('admin.vendors.store-products');
+        Route::get('vendors/{id}/edit-products', [VendorAdminController::class, 'editProducts'])->name('admin.vendors.edit-products');
+        Route::put('vendors/{id}/update-products', [VendorAdminController::class, 'updateProducts'])->name('admin.vendors.update-products');
+        Route::post('/vendors/{id}/update-password', [VendorAdminController::class, 'updatePassword'])->name('admin.vendors.updatePassword');
+        Route::post('/admin/validate-password', [VendorAdminController::class, 'validatePassword'])->name('admin.validatePassword');
 
         Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
         Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
+
         Route::resource('admin/members', MemberController::class);
         Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
         Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');
@@ -144,25 +242,46 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('/members/{id}/update-password', [MemberController::class, 'updatePassword'])->name('members.updatePassword');
         Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
-        Route::resource('admin/distributors', DistributorController::class);
+        // Routes Tiketing Layanan untuk Admin
+        Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
+        Route::put('/admin/tickets/{id}/process', [TicketController::class, 'process'])->name('admin.tickets.process');
+        Route::put('/admin/tickets/{id}/complete', [TicketController::class, 'complete'])->name('admin.tickets.complete');
+        Route::get('/admin/tickets/{id}', [TicketController::class, 'show'])->name('admin.tickets.show');
 
-        Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
-        Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
-        Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
-        Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
-        Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
-        Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
-        Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
+        Route::get('/admin/quotations', [QuotationAdminController::class, 'index'])->name('admin.quotations.index');
+        Route::put('/quotations/{id}/status', [QuotationAdminController::class, 'updateStatus'])->name('admin.quotations.updateStatus');
+        Route::post('/quotations/{id}/upload-file', [QuotationAdminController::class, 'uploadFile'])->name('admin.quotations.uploadFile');
+        Route::get('admin/quotations/{id}/show', [QuotationAdminController::class, 'show'])->name('admin.quotations.show');
+        Route::get('admin/quotations/{id}/edit', [QuotationAdminController::class, 'edit'])->name('admin.quotations.edit');
+        Route::put('admin/quotations/{id}', [QuotationAdminController::class, 'update'])->name('admin.quotations.update');
 
-        Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
-            Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
-            Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
-            Route::post('/store/{userProdukId}', [MonitoringController::class, 'inspeksiStore'])->name('store');
-            Route::get('/edit/{id}', [MonitoringController::class, 'inspeksiEdit'])->name('edit');
-            Route::put('/update/{id}/{userProdukId}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
-            Route::delete('/destroy/{id}', [MonitoringController::class, 'inspeksiDestroy'])->name('destroy');
-            Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
-        });
+        // Menampilkan semua negosiasi untuk ditinjau admin
+        Route::get('/admin/quotations/negotiations', [QuotationNegotiationController::class, 'index'])->name('admin.quotations.negotiations.index');
+
+        // Menerima negosiasi
+        Route::put('/admin/quotations/negotiations/{id}/accept', [QuotationNegotiationController::class, 'accept'])->name('admin.quotations.negotiations.accept');
+        Route::put('/admin/quotations/negotiations/{id}/process', [QuotationNegotiationController::class, 'process'])->name('admin.quotations.negotiations.process');
+
+        // Menolak negosiasi
+        Route::put('/admin/quotations/negotiations/{id}/reject', [QuotationNegotiationController::class, 'reject'])->name('admin.quotations.negotiations.reject');
+        Route::get('/purchase-orders', [PurchaseOrderAdminController::class, 'index'])->name('admin.purchase-orders.index');
+        Route::get('/purchase-orders/{id}', [PurchaseOrderAdminController::class, 'show'])->name('admin.purchase-orders.show');
+        Route::put('/purchase-orders/{id}/approve', [PurchaseOrderAdminController::class, 'approve'])->name('admin.purchase-orders.approve');
+        Route::put('/purchase-orders/{id}/reject', [PurchaseOrderAdminController::class, 'reject'])->name('admin.purchase-orders.reject');
+        Route::put('/purchase-orders/{id}/po-number', [PurchaseOrderAdminController::class, 'updatePoNumber'])->name('admin.purchase-orders.update-po-number');
+
+        Route::get('/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
+        Route::post('/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');
+        Route::get('/admin/proforma-invoices', [ProformaInvoiceAdminController::class, 'index'])->name('admin.proforma-invoices.index');
+        Route::get('/admin/proforma-invoices/{id}', [ProformaInvoiceAdminController::class, 'show'])->name('admin.proforma-invoices.show');
+        Route::put('/admin/proforma-invoices/{id}/approve-reject', [ProformaInvoiceAdminController::class, 'approveRejectPayment'])
+            ->name('admin.proforma-invoices.approve-reject');
+
+        // Route untuk index dan pembuatan invoice
+        Route::get('/invoices', [InvoiceAdminController::class, 'index'])->name('invoices.index');
+        Route::get('/invoices/create/{proformaInvoiceId}', [InvoiceAdminController::class, 'create'])->name('invoices.create');
+        Route::post('/invoices/store/{proformaInvoiceId}', [InvoiceAdminController::class, 'store'])->name('invoices.store');
+        Route::get('/invoices/{id}', [InvoiceAdminController::class, 'show'])->name('invoices.show');
 
         Route::get('/admin/visitors', [VisitorController::class, 'index'])->name('admin.visitors');
         Route::resource('admin/produk', ProdukController::class)->names('admin.produk');

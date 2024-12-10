@@ -1,11 +1,11 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="h3">Daftar Bidang Perusahaan</h2>
+            <h2 class="h4">Daftar Bidang Perusahaan</h2>
             <a href="{{ route('bidangperusahaan.create') }}" class="btn btn-primary">Tambah Bidang Perusahaan</a>
         </div>
 

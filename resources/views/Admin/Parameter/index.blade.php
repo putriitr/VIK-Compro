@@ -1,10 +1,10 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h1 class="h3">Parameter Perusahaan</h1>
+            <h1 class="h4">Parameter Perusahaan</h1>
             <a href="{{ route('parameter.create') }}" class="btn btn-primary">Tambah Parameter Baru</a>
         </div>
 
