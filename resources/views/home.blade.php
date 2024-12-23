@@ -111,7 +111,7 @@
             <div class="row g-5">
                 <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="bg-light rounded">
-                        <img src="{{ asset('assets/img/company_1.jpg') }}" class="img-fluid w-100"
+                        <img src="{{ asset('assets/img/company_2.jpg') }}" class="img-fluid w-100"
                             style="margin-bottom: -7px;" alt="Image">
                         {{-- <img src="{{ asset('storage/company_2.jpg') }}"
                             class="img-fluid w-100 border-bottom border-5 border-primary"

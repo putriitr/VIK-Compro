@@ -7,7 +7,8 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
 
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid bg-breadcrumb"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/company_1.jpg') }}'); background-size: cover; height: 350px;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.contact_us') }}</h1>
                 <ol class="breadcrumb justify-content-center text-white mb-0 wow fadeInDown" data-wow-delay="0.3s">

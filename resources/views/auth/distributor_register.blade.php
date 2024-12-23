@@ -125,7 +125,7 @@
         <div class="login-wrapper">
             <div class="login-left">
                 <h3 class="form-title text-center">{{ __('messages.regis_desc2') }}</h3><br>
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('distributors.register') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -205,7 +205,7 @@
                             <div class="form-group">
                                 <label for="dokumen">{{ __('messages.upload_doc1') }}</label>
                                 <input type="file" name="dokumen" id="dokumen" class="form-control-file"
-                                    accept=".pdf,.doc,.docx,.txt"
+                                    accept=".pdf,.jpg,.png"
                                     style="display: block; width: 100%; padding: 10px; font-size: 14px;
                                         border: 1px solid #ccc; border-radius: 5px; background-color: white;
                                         color: black; cursor: pointer;"
@@ -218,9 +218,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="dokumen">{{ __('messages.upload_doc2') }}</label>
-                                <input type="file" name="dokumen" id="dokumen" class="form-control-file"
-                                    accept=".pdf,.doc,.docx,.txt"
+                                <label for="nib">{{ __('messages.upload_doc2') }}</label>
+                                <input type="file" name="nib" id="nib" class="form-control-file"
+                                    accept=".pdf,.jpg,.png"
                                     style="display: block; width: 100%; padding: 10px; font-size: 14px;
                                         border: 1px solid #ccc; border-radius: 5px; background-color: white;
                                         color: black; cursor: pointer;"
